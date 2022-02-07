@@ -1,0 +1,24 @@
+#!/bin/sh
+echo "Enter date of the episode"
+read date
+#date=$(name)
+echo "Enter episode number"
+read episode
+#episode=$()
+
+if [[ "$episode" -lt 11 ]]
+then
+url=$(curl -o tmp https://saathnibhaanasaathiya.com/shark-tank-india-$date"th"-december-2022-episode-$episode-video/)
+
+elif [[ "$episode" -gt 10 ]] && [[ "$episode" -lt 32 ]]
+then
+url=$(curl -o tmp https://saathnibhaanasaathiya.com/shark-tank-india-$date"th"-january-2022-episode-$episode-video/)
+
+elif [[ "$episode" -gt 32 ]]
+then
+url=$(curl -o tmp https://saathnibhaanasaathiya.com/shark-tank-india-$date"th"-february-2022-episode-$episode-video/)
+fi
+video1=$(cat tmp|grep rr1|cut -b 8-|rev|cut -b 3-|rev)
+video2=$(cat tmp|grep rr2|cut -b 8-|rev|cut -b 3-|rev)
+mpv $video1
+mpv $video2
